@@ -1,0 +1,33 @@
+.register {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 150px;
+}
+
+label{
+  padding: 15px;
+}
+
+input{
+  height: 15px;
+}
+
+h1{
+  text-align: center;
+  margin-top: 200px;
+}
+
+#submitbtn{
+  margin-top: 25px;
+  cursor: pointer;
+  background-color: rgb(144, 145, 146);
+  border-radius: 20px;
+  border: solid 0.5px black;
+}
+
+#submitbtn:hover{
+  background-color: rgb(176, 177, 177);
+}
+
