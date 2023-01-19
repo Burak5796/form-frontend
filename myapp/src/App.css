@@ -22,12 +22,14 @@ h1{
 #submitbtn{
   margin-top: 25px;
   cursor: pointer;
-  background-color: rgb(144, 145, 146);
+  background-color: rgb(240, 218, 218);
   border-radius: 20px;
-  border: solid 0.5px black;
+  border: solid 0.5px rgb(255, 255, 255);
+  height: 30px;
 }
 
 #submitbtn:hover{
-  background-color: rgb(176, 177, 177);
+  background-color: rgb(220, 200, 200);;
+  
 }
 
