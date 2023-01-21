@@ -1,7 +1,10 @@
+import '../styles/register.css'
+
+
 function Registration() {
     return(
        <>
-        <h1>Registration</h1>
+        <h1 className='register-headline'>Registration</h1>
         <form className="register" type="submit">
         <label>Firstname:</label>
         <input type="text"></input>
