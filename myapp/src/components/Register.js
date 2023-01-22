@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 
 
-
 function Registration() {
 
 const [name,setName] = useState(" ");
@@ -11,22 +10,35 @@ const [surName,setSurname] = useState();
 const [userName,setUsername] = useState(" ");
 const [email,setEmail] = useState(" ");
 const [pw,setPW] = useState(" ");
+const [repeatPW,setRepeat] = useState(" ");
 
 
-const submithandler = (e) => {
+const submithandler = (e) => {  
+
+      if(repeatPW !== pw) {
+            return alert("the password is wrong");
+      }
+
        e.preventDefault();
-       const formData = new FormData();
-       formData.append('firstName', JSON.stringify(name));
-       formData.append('lastName', JSON.stringify(surName));
-       formData.append('userName', JSON.stringify(userName));
-       formData.append('email', JSON.stringify(email));
-       formData.append('password', JSON.stringify(pw));
+       const allData = {
 
-       fetch('http://localhost:4000',{
-              method: "POST",
-              body: formData,
-              headers: { 'Content-Type': 'application/json' }
-       })
+            firstName: name,
+            lastName: surName,
+            userName: userName,
+            email: email,
+            password: pw
+       }
+
+       const options = { 
+            method: 'post',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(allData)
+          }    
+
+       fetch('http://localhost:4000/', options)
        .then(response => response.json())
 	.then(data => console.log(data))
 	.catch(err => console.error(err));
@@ -37,7 +49,7 @@ const submithandler = (e) => {
         <h1 className='register-headline'>Registration</h1>
         <form className="register" onSubmit={submithandler}>
         <label>Firstname:</label>
-        <input type="text" onChange={(e) => {
+        <input type="text" name='firstName' onChange={(e) => {
               setName(e.target.value);
         }}></input>
         <label>Lastname:</label>
@@ -53,15 +65,18 @@ const submithandler = (e) => {
               setEmail(e.target.value);
         }}></input>
         <label>Password:</label>
-        <input type="password" name="pw"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required
+        <input type="password" name="pw"  /* pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required */
                onChange={(e) => {
                      setPW(e.target.value);
                }}>  
         </input>
         <label>Repeat Password:</label>
-        <input type="password" name="pw"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>  
+        <input type="password" name="pw"  /* pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required */
+               onChange={(e) => {
+                  setRepeat(e.target.value);
+            }}>  
         </input>
         <button id="submitbtn">Submit</button>
       </form>
